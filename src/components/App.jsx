@@ -20,6 +20,22 @@ const App = () => {
   }, [contacts]);
 
   const addContact = newContact => {
+    const { name, number } = newContact;
+
+    if (
+      contacts.some(
+        contact => contact.name.toLowerCase() === name.toLowerCase()
+      )
+    ) {
+      alert('This name is already in contacts');
+      return;
+    }
+
+    if (contacts.some(contact => contact.number === number)) {
+      alert('This number is already in contacts');
+      return;
+    }
+
     setContacts(prevContacts => [...prevContacts, newContact]);
   };
 
